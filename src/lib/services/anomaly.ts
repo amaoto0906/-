@@ -91,7 +91,6 @@ async function detectMortalitySpike(pondId: string, pondName: string) {
  * FCR異常: 魚種ごとの基準レンジ外
  */
 async function detectFcrAnomaly(pondId: string, pondName: string) {
-  const now = new Date();
   const from = new Date();
   from.setDate(from.getDate() - 14);
 

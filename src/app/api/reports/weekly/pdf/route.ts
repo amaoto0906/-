@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
 import { renderPeriodReportPDF } from "@/lib/pdf-report";
 import { generateWeeklyComment, isoWeekRange } from "@/lib/services/ai-comment";
