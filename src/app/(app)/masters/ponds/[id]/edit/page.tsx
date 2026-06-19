@@ -4,6 +4,8 @@ import { updatePond } from "../../actions";
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 export default async function EditPondPage({ params }: { params: { id: string } }) {
   const pond = await prisma.pond.findUnique({ where: { id: params.id } });
   if (!pond) return notFound();
