@@ -2,6 +2,8 @@ import { PageHeader } from "@/components/page-header";
 import { SpeciesForm } from "../species-form";
 import { createSpecies } from "../actions";
 
+export const dynamic = "force-dynamic";
+
 export default function NewSpeciesPage() {
   return (
     <div>

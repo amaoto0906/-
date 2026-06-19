@@ -2,6 +2,8 @@ import { PageHeader } from "@/components/page-header";
 import { PondForm } from "../pond-form";
 import { createPond } from "../actions";
 
+export const dynamic = "force-dynamic";
+
 export default function NewPondPage() {
   return (
     <div>

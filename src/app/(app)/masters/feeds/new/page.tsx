@@ -2,6 +2,8 @@ import { PageHeader } from "@/components/page-header";
 import { FeedForm } from "../feed-form";
 import { createFeed } from "../actions";
 
+export const dynamic = "force-dynamic";
+
 export default function NewFeedPage() {
   return (
     <div>
