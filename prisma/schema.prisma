@@ -1,0 +1,251 @@
+// 養魚場管理システム DB Schema
+// Prisma + SQLite (MVP)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================
+// マスタ
+// ============================================================
+
+model User {
+  id                String    @id @default(cuid())
+  email             String    @unique
+  name              String
+  password          String
+  role              String    @default("worker") // admin / worker / viewer
+  passwordChangedAt DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  feedingLogs    FeedingLog[]
+  productionLogs ProductionLog[]
+}
+
+model Farm {
+  id        String   @id @default(cuid())
+  name      String
+  location  String?
+  timezone  String   @default("Asia/Tokyo")
+  createdAt DateTime @default(now())
+
+  ponds Pond[]
+}
+
+model Pond {
+  id        String   @id @default(cuid())
+  farmId    String
+  code      String   @unique
+  name      String
+  type      String   @default("pond") // pond / tank
+  status    String   @default("active") // active / paused / closed
+  isActive  Boolean  @default(true)
+  volumeM3  Float?
+  areaM2    Float?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  farm              Farm               @relation(fields: [farmId], references: [id])
+  stocks            PondStock[]
+  feedingLogs       FeedingLog[]
+  productionLogs    ProductionLog[]
+  waterQualityLogs  WaterQualityLog[]
+  dailyAggregates   DailyAggregate[]
+  anomalyAlerts     AnomalyAlert[]
+  forecastSnapshots ForecastSnapshot[]
+}
+
+model FishSpecies {
+  id             String   @id @default(cuid())
+  code           String   @unique
+  nameJa         String   @unique
+  nameSci        String?
+  optimalTempMin Float?
+  optimalTempMax Float?
+  targetFcrMin   Float?
+  targetFcrMax   Float?
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+
+  stocks         PondStock[]
+  productionLogs ProductionLog[]
+}
+
+model Feed {
+  id           String   @id @default(cuid())
+  code         String   @unique
+  name         String
+  manufacturer String?
+  unit         String   @default("kg") // kg / L / 袋
+  proteinPct   Float?
+  fatPct       Float?
+  unitPrice    Float?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+
+  feedingLogs FeedingLog[]
+}
+
+model PondStock {
+  id               String   @id @default(cuid())
+  pondId           String
+  speciesId        String
+  stockedAt        DateTime
+  initialCount     Int
+  initialAvgWeight Float
+  createdAt        DateTime @default(now())
+
+  pond    Pond        @relation(fields: [pondId], references: [id])
+  species FishSpecies @relation(fields: [speciesId], references: [id])
+}
+
+// ============================================================
+// トランザクション
+// ============================================================
+
+model FeedingLog {
+  id           String   @id @default(cuid())
+  pondId       String
+  feedId       String
+  recordedAt   DateTime
+  amountKg     Float
+  mealsCount   Int      @default(1)
+  feederUserId String?
+  note         String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  pond       Pond  @relation(fields: [pondId], references: [id])
+  feed       Feed  @relation(fields: [feedId], references: [id])
+  feederUser User? @relation(fields: [feederUserId], references: [id])
+
+  @@index([pondId, recordedAt])
+}
+
+model ProductionLog {
+  id                String   @id @default(cuid())
+  pondId            String
+  speciesId         String
+  recordedAt        DateTime
+  harvestedCount    Int      @default(0)
+  harvestedWeightKg Float    @default(0)
+  mortalityCount    Int      @default(0)
+  avgWeightG        Float?
+  recordedUserId    String?
+  note              String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  pond         Pond        @relation(fields: [pondId], references: [id])
+  species      FishSpecies @relation(fields: [speciesId], references: [id])
+  recordedUser User?       @relation(fields: [recordedUserId], references: [id])
+
+  @@index([pondId, recordedAt])
+}
+
+model WaterQualityLog {
+  id         String   @id @default(cuid())
+  pondId     String
+  recordedAt DateTime
+  tempC      Float?
+  ph         Float?
+  doMgL      Float?
+  source     String   @default("manual")
+  note       String?
+  createdAt  DateTime @default(now())
+
+  pond Pond @relation(fields: [pondId], references: [id])
+
+  @@index([pondId, recordedAt])
+}
+
+model DailyAggregate {
+  id                  String   @id @default(cuid())
+  pondId              String
+  date                String
+  totalFeedKg         Float    @default(0)
+  totalProductionKg   Float    @default(0)
+  totalMortalityCount Int      @default(0)
+  fcr                 Float?
+  updatedAt           DateTime @updatedAt
+
+  pond Pond @relation(fields: [pondId], references: [id])
+
+  @@unique([pondId, date])
+}
+
+// ============================================================
+// AI / 分析
+// ============================================================
+
+model AnomalyAlert {
+  id             String    @id @default(cuid())
+  pondId         String
+  type           String
+  severity       String    @default("warning")
+  detectedAt     DateTime  @default(now())
+  message        String
+  acknowledgedAt DateTime?
+  createdAt      DateTime  @default(now())
+
+  pond Pond @relation(fields: [pondId], references: [id])
+
+  @@index([pondId, detectedAt])
+}
+
+model ForecastSnapshot {
+  id             String   @id @default(cuid())
+  pondId         String
+  targetDate     String
+  metric         String
+  predictedValue Float
+  modelVersion   String   @default("ma14-v1")
+  createdAt      DateTime @default(now())
+
+  pond Pond @relation(fields: [pondId], references: [id])
+
+  @@unique([pondId, targetDate, metric])
+}
+
+model AiComment {
+  id            String   @id @default(cuid())
+  reportType    String
+  periodKey     String
+  generatedText String
+  createdAt     DateTime @default(now())
+
+  @@unique([reportType, periodKey])
+}
+
+// ============================================================
+// 将来拡張用（スキーマだけ用意）
+// ============================================================
+
+model SensorDevice {
+  id         String    @id @default(cuid())
+  deviceId   String    @unique
+  pondId     String?
+  type       String
+  lastSeenAt DateTime?
+  createdAt  DateTime  @default(now())
+
+  readings SensorReading[]
+}
+
+model SensorReading {
+  id         String   @id @default(cuid())
+  deviceId   String
+  recordedAt DateTime
+  metric     String
+  value      Float
+
+  device SensorDevice @relation(fields: [deviceId], references: [id])
+
+  @@index([deviceId, recordedAt])
+}

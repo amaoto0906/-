@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>養魚管理システム</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="主ナビゲーション">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>養魚管理</span>
+        </div>
+        <nav class="nav-list">
+          <a class="active" href="#dashboard">概況</a>
+          <a href="#quality">水質</a>
+          <a href="#feeding">給餌</a>
+          <a href="#worklog">作業</a>
+          <a href="#assets">画像</a>
+        </nav>
+      </aside>
+
+      <main class="workspace">
+        <section class="hero-panel" id="dashboard">
+          <picture>
+            <source srcset="assets/images/webp/dashboard-aerial.webp" type="image/webp">
+            <img src="assets/images/jpg/dashboard-aerial.jpg" alt="沿岸の海面養殖場を上空から見た様子">
+          </picture>
+          <div class="hero-overlay"></div>
+          <div class="hero-content">
+            <p class="eyebrow">本日の海面養殖オペレーション</p>
+            <h1>湾内 A-03 生簀群</h1>
+            <div class="hero-metrics" aria-label="主要指標">
+              <div>
+                <span>水温</span>
+                <strong>22.8℃</strong>
+              </div>
+              <div>
+                <span>溶存酸素</span>
+                <strong>7.1 mg/L</strong>
+              </div>
+              <div>
+                <span>給餌進捗</span>
+                <strong>82%</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="status-grid" aria-label="運用ステータス">
+          <article class="metric-card">
+            <span>アラート</span>
+            <strong>1件</strong>
+            <small>波高センサー確認待ち</small>
+          </article>
+          <article class="metric-card good">
+            <span>魚群状態</span>
+            <strong>正常</strong>
+            <small>前回観察から変化なし</small>
+          </article>
+          <article class="metric-card">
+            <span>作業記録</span>
+            <strong>14件</strong>
+            <small>午前巡回を反映済み</small>
+          </article>
+          <article class="metric-card good">
+            <span>出荷準備</span>
+            <strong>3ロット</strong>
+            <small>品質確認中</small>
+          </article>
+        </section>
+
+        <section class="feature-grid" aria-label="主要業務">
+          <article class="feature-card" id="quality">
+            <picture>
+              <source srcset="assets/images/webp/water-quality.webp" type="image/webp">
+              <img src="assets/images/jpg/water-quality.jpg" alt="海上生簀で水質センサーを扱う養殖作業者">
+            </picture>
+            <div>
+              <span>水質管理</span>
+              <h2>センサー測定</h2>
+              <p>水温、溶存酸素、pH、塩分濃度を生簀単位で確認します。</p>
+            </div>
+          </article>
+          <article class="feature-card" id="feeding">
+            <picture>
+              <source srcset="assets/images/webp/feeding-management.webp" type="image/webp">
+              <img src="assets/images/jpg/feeding-management.jpg" alt="海上生簀で給餌設備を確認する養殖作業者">
+            </picture>
+            <div>
+              <span>給餌管理</span>
+              <h2>給餌計画</h2>
+              <p>日別の給餌量、設備状況、残餌の確認をまとめます。</p>
+            </div>
+          </article>
+          <article class="feature-card">
+            <picture>
+              <source srcset="assets/images/webp/fish-health.webp" type="image/webp">
+              <img src="assets/images/jpg/fish-health.jpg" alt="海中の生簀内を泳ぐ健康な養殖魚の群れ">
+            </picture>
+            <div>
+              <span>健康観察</span>
+              <h2>魚群モニタリング</h2>
+              <p>遊泳状態と成育傾向を記録し、異常兆候を早めに把握します。</p>
+            </div>
+          </article>
+          <article class="feature-card" id="worklog">
+            <picture>
+              <source srcset="assets/images/webp/work-log.webp" type="image/webp">
+              <img src="assets/images/jpg/work-log.jpg" alt="海上生簀の近くでタブレットに点検記録を入力する作業者">
+            </picture>
+            <div>
+              <span>作業記録</span>
+              <h2>巡回と点検</h2>
+              <p>担当者、時刻、写真、メモを現場から素早く残します。</p>
+            </div>
+          </article>
+          <article class="feature-card">
+            <picture>
+              <source srcset="assets/images/webp/harvest-shipment.webp" type="image/webp">
+              <img src="assets/images/jpg/harvest-shipment.jpg" alt="港で養殖魚の出荷準備を行う作業者たち">
+            </picture>
+            <div>
+              <span>出荷管理</span>
+              <h2>ロット品質</h2>
+              <p>水揚げ、選別、出荷予定をロットごとに管理します。</p>
+            </div>
+          </article>
+          <article class="feature-card warning">
+            <picture>
+              <source srcset="assets/images/webp/alert-monitoring.webp" type="image/webp">
+              <img src="assets/images/jpg/alert-monitoring.jpg" alt="波のある海上生簀でアラート状況を確認する作業者">
+            </picture>
+            <div>
+              <span>異常検知</span>
+              <h2>注意状態</h2>
+              <p>気象、波高、センサー値の変化を落ち着いて確認できます。</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="split-layout" aria-label="ログインと状態表示の画像利用例">
+          <article class="login-preview">
+            <picture>
+              <source srcset="assets/images/webp/hero-login.webp" type="image/webp">
+              <img src="assets/images/jpg/hero-login.jpg" alt="海上生簀のそばでタブレットを確認する養殖作業者">
+            </picture>
+            <div class="login-copy">
+              <span>現場ログイン</span>
+              <strong>今日の作業を開始</strong>
+            </div>
+          </article>
+
+          <div class="state-list">
+            <article class="state-card">
+              <picture>
+                <source srcset="assets/images/webp/empty-no-alerts.webp" type="image/webp">
+                <img src="assets/images/jpg/empty-no-alerts.jpg" alt="アラートがない状態を示すセンサーと消灯したビーコン">
+              </picture>
+              <div>
+                <strong>アラートなし</strong>
+                <span>監視対象は正常範囲です。</span>
+              </div>
+            </article>
+            <article class="state-card">
+              <picture>
+                <source srcset="assets/images/webp/error-offline.webp" type="image/webp">
+                <img src="assets/images/jpg/error-offline.jpg" alt="通信オフラインを示すアンテナ機器とタブレット">
+              </picture>
+              <div>
+                <strong>通信確認</strong>
+                <span>中継機との接続を確認してください。</span>
+              </div>
+            </article>
+            <article class="state-card">
+              <picture>
+                <source srcset="assets/images/webp/error-sensor-disconnected.webp" type="image/webp">
+                <img src="assets/images/jpg/error-sensor-disconnected.jpg" alt="センサー未接続を示す水質プローブと防水コネクタ">
+              </picture>
+              <div>
+                <strong>センサー未接続</strong>
+                <span>防水コネクタの状態を点検してください。</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="thumb-section" aria-label="魚種と施設">
+          <div class="section-heading">
+            <h2>魚種と施設</h2>
+            <p>カード表示に使う 1:1 サムネイル。</p>
+          </div>
+          <div class="thumb-grid">
+            <article class="thumb-card">
+              <picture>
+                <source srcset="assets/images/webp/species-yellowtail.webp" type="image/webp">
+                <img src="assets/images/jpg/species-yellowtail.jpg" alt="生簀内を泳ぐ健康なブリに近い養殖魚">
+              </picture>
+              <strong>ブリ系ロット</strong>
+            </article>
+            <article class="thumb-card">
+              <picture>
+                <source srcset="assets/images/webp/species-sea-bream.webp" type="image/webp">
+                <img src="assets/images/jpg/species-sea-bream.jpg" alt="生簀内を泳ぐ健康なマダイに近い養殖魚">
+              </picture>
+              <strong>マダイ系ロット</strong>
+            </article>
+            <article class="thumb-card">
+              <picture>
+                <source srcset="assets/images/webp/facility-offshore-cage.webp" type="image/webp">
+                <img src="assets/images/jpg/facility-offshore-cage.jpg" alt="海上に設置された円形の養殖生簀">
+              </picture>
+              <strong>沖合生簀</strong>
+            </article>
+            <article class="thumb-card">
+              <picture>
+                <source srcset="assets/images/webp/facility-harbor-dock.webp" type="image/webp">
+                <img src="assets/images/jpg/facility-harbor-dock.jpg" alt="養殖作業を支える港の作業船と設備">
+              </picture>
+              <strong>港湾拠点</strong>
+            </article>
+          </div>
+        </section>
+
+        <section class="asset-table" id="assets" aria-label="画像マニフェストの概要">
+          <div class="section-heading">
+            <h2>画像マニフェスト</h2>
+            <p>`assets/images/manifest.json` にキー、alt、焦点位置、推奨配置を定義済み。</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>key</th>
+                  <th>用途</th>
+                  <th>比率</th>
+                  <th>焦点</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>hero-login</td><td>ログイン/初回案内</td><td>16:9</td><td>right center</td></tr>
+                <tr><td>dashboard-aerial</td><td>ダッシュボードヘッダー</td><td>16:9</td><td>center center</td></tr>
+                <tr><td>water-quality</td><td>水質管理</td><td>16:9</td><td>center center</td></tr>
+                <tr><td>feeding-management</td><td>給餌管理</td><td>16:9</td><td>left center</td></tr>
+                <tr><td>empty-no-alerts</td><td>正常な空状態</td><td>1:1</td><td>center center</td></tr>
+                <tr><td>error-offline</td><td>通信不良</td><td>1:1</td><td>center center</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

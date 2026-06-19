@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /tmp/screens)",
+      "Bash(npx playwright *)",
+      "Bash(npm init *)"
+    ]
+  }
+}

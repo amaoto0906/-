@@ -1,0 +1,282 @@
+[
+  {
+    "key": "hero-login",
+    "category": "primary",
+    "aspectRatio": "16:9",
+    "alt": "海上生簀のそばでタブレットを確認する養殖作業者",
+    "focalPosition": "right center",
+    "recommendedPlacement": "ログイン、初回案内、権限選択",
+    "overlay": "dark-gradient-left",
+    "files": {
+      "webp": "assets/images/webp/hero-login.webp",
+      "jpg": "assets/images/jpg/hero-login.jpg",
+      "source": "assets/images/source/hero-login.png"
+    }
+  },
+  {
+    "key": "dashboard-aerial",
+    "category": "primary",
+    "aspectRatio": "16:9",
+    "alt": "沿岸の海面養殖場を上空から見た様子",
+    "focalPosition": "center center",
+    "recommendedPlacement": "ダッシュボードヘッダー、施設概要",
+    "overlay": "soft-dark",
+    "files": {
+      "webp": "assets/images/webp/dashboard-aerial.webp",
+      "jpg": "assets/images/jpg/dashboard-aerial.jpg",
+      "source": "assets/images/source/dashboard-aerial.png"
+    }
+  },
+  {
+    "key": "water-quality",
+    "category": "feature",
+    "aspectRatio": "16:9",
+    "alt": "海上生簀で水質センサーを扱う養殖作業者",
+    "focalPosition": "center center",
+    "recommendedPlacement": "水質管理、センサー記録、測定詳細",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/water-quality.webp",
+      "jpg": "assets/images/jpg/water-quality.jpg",
+      "source": "assets/images/source/water-quality.png"
+    }
+  },
+  {
+    "key": "feeding-management",
+    "category": "feature",
+    "aspectRatio": "16:9",
+    "alt": "海上生簀で給餌設備を確認する養殖作業者",
+    "focalPosition": "left center",
+    "recommendedPlacement": "給餌管理、給餌予定、飼料使用量",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/feeding-management.webp",
+      "jpg": "assets/images/jpg/feeding-management.jpg",
+      "source": "assets/images/source/feeding-management.png"
+    }
+  },
+  {
+    "key": "fish-health",
+    "category": "feature",
+    "aspectRatio": "16:9",
+    "alt": "海中の生簀内を泳ぐ健康な養殖魚の群れ",
+    "focalPosition": "center center",
+    "recommendedPlacement": "魚群観察、健康管理、成育状況",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/fish-health.webp",
+      "jpg": "assets/images/jpg/fish-health.jpg",
+      "source": "assets/images/source/fish-health.png"
+    }
+  },
+  {
+    "key": "work-log",
+    "category": "feature",
+    "aspectRatio": "16:9",
+    "alt": "海上生簀の近くでタブレットに点検記録を入力する作業者",
+    "focalPosition": "center center",
+    "recommendedPlacement": "作業記録、日報、点検メモ",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/work-log.webp",
+      "jpg": "assets/images/jpg/work-log.jpg",
+      "source": "assets/images/source/work-log.png"
+    }
+  },
+  {
+    "key": "harvest-shipment",
+    "category": "feature",
+    "aspectRatio": "16:9",
+    "alt": "港で養殖魚の出荷準備を行う作業者たち",
+    "focalPosition": "center center",
+    "recommendedPlacement": "出荷管理、在庫管理、品質確認",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/harvest-shipment.webp",
+      "jpg": "assets/images/jpg/harvest-shipment.jpg",
+      "source": "assets/images/source/harvest-shipment.png"
+    }
+  },
+  {
+    "key": "alert-monitoring",
+    "category": "feature",
+    "aspectRatio": "16:9",
+    "alt": "波のある海上生簀でアラート状況を確認する作業者",
+    "focalPosition": "center center",
+    "recommendedPlacement": "異常検知、アラート一覧、気象注意",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/alert-monitoring.webp",
+      "jpg": "assets/images/jpg/alert-monitoring.jpg",
+      "source": "assets/images/source/alert-monitoring.png"
+    }
+  },
+  {
+    "key": "equipment-maintenance",
+    "category": "feature",
+    "aspectRatio": "16:9",
+    "alt": "海上生簀の設備とセンサーを点検する技術者",
+    "focalPosition": "center center",
+    "recommendedPlacement": "設備管理、保守予定、センサー台帳",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/equipment-maintenance.webp",
+      "jpg": "assets/images/jpg/equipment-maintenance.jpg",
+      "source": "assets/images/source/equipment-maintenance.png"
+    }
+  },
+  {
+    "key": "team-permissions",
+    "category": "feature",
+    "aspectRatio": "16:9",
+    "alt": "海上生簀の近くでタブレットを見ながら確認する作業チーム",
+    "focalPosition": "center center",
+    "recommendedPlacement": "チーム管理、権限管理、引き継ぎ",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/team-permissions.webp",
+      "jpg": "assets/images/jpg/team-permissions.jpg",
+      "source": "assets/images/source/team-permissions.png"
+    }
+  },
+  {
+    "key": "empty-no-records",
+    "category": "empty",
+    "aspectRatio": "1:1",
+    "alt": "記録がまだない状態を示す端末と作業道具",
+    "focalPosition": "center center",
+    "recommendedPlacement": "作業記録なし、検索結果なし",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/empty-no-records.webp",
+      "jpg": "assets/images/jpg/empty-no-records.jpg",
+      "source": "assets/images/source/empty-no-records.png"
+    }
+  },
+  {
+    "key": "empty-no-alerts",
+    "category": "empty",
+    "aspectRatio": "1:1",
+    "alt": "アラートがない状態を示すセンサーと消灯したビーコン",
+    "focalPosition": "center center",
+    "recommendedPlacement": "アラートなし、正常状態",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/empty-no-alerts.webp",
+      "jpg": "assets/images/jpg/empty-no-alerts.jpg",
+      "source": "assets/images/source/empty-no-alerts.png"
+    }
+  },
+  {
+    "key": "empty-sync-pending",
+    "category": "empty",
+    "aspectRatio": "1:1",
+    "alt": "データ同期待ちを示すセンサー浮標とタブレット",
+    "focalPosition": "center center",
+    "recommendedPlacement": "同期待ち、読込中、センサー未更新",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/empty-sync-pending.webp",
+      "jpg": "assets/images/jpg/empty-sync-pending.jpg",
+      "source": "assets/images/source/empty-sync-pending.png"
+    }
+  },
+  {
+    "key": "error-offline",
+    "category": "error",
+    "aspectRatio": "1:1",
+    "alt": "通信オフラインを示すアンテナ機器とタブレット",
+    "focalPosition": "center center",
+    "recommendedPlacement": "通信不良、オフライン、再接続案内",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/error-offline.webp",
+      "jpg": "assets/images/jpg/error-offline.jpg",
+      "source": "assets/images/source/error-offline.png"
+    }
+  },
+  {
+    "key": "error-sensor-disconnected",
+    "category": "error",
+    "aspectRatio": "1:1",
+    "alt": "センサー未接続を示す水質プローブと防水コネクタ",
+    "focalPosition": "center center",
+    "recommendedPlacement": "センサー未接続、保守案内、計測停止",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/error-sensor-disconnected.webp",
+      "jpg": "assets/images/jpg/error-sensor-disconnected.jpg",
+      "source": "assets/images/source/error-sensor-disconnected.png"
+    }
+  },
+  {
+    "key": "species-yellowtail",
+    "category": "thumbnail",
+    "aspectRatio": "1:1",
+    "alt": "生簀内を泳ぐ健康なブリに近い養殖魚",
+    "focalPosition": "center center",
+    "recommendedPlacement": "魚種カード、ロット一覧、成育管理",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/species-yellowtail.webp",
+      "jpg": "assets/images/jpg/species-yellowtail.jpg",
+      "source": "assets/images/source/species-yellowtail.png"
+    }
+  },
+  {
+    "key": "species-sea-bream",
+    "category": "thumbnail",
+    "aspectRatio": "1:1",
+    "alt": "生簀内を泳ぐ健康なマダイに近い養殖魚",
+    "focalPosition": "center center",
+    "recommendedPlacement": "魚種カード、ロット一覧、成育管理",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/species-sea-bream.webp",
+      "jpg": "assets/images/jpg/species-sea-bream.jpg",
+      "source": "assets/images/source/species-sea-bream.png"
+    }
+  },
+  {
+    "key": "facility-offshore-cage",
+    "category": "thumbnail",
+    "aspectRatio": "1:1",
+    "alt": "海上に設置された円形の養殖生簀",
+    "focalPosition": "center center",
+    "recommendedPlacement": "施設カード、生簀一覧、拠点管理",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/facility-offshore-cage.webp",
+      "jpg": "assets/images/jpg/facility-offshore-cage.jpg",
+      "source": "assets/images/source/facility-offshore-cage.png"
+    }
+  },
+  {
+    "key": "facility-harbor-dock",
+    "category": "thumbnail",
+    "aspectRatio": "1:1",
+    "alt": "養殖作業を支える港の作業船と設備",
+    "focalPosition": "center center",
+    "recommendedPlacement": "拠点カード、港湾設備、作業船管理",
+    "overlay": "none",
+    "files": {
+      "webp": "assets/images/webp/facility-harbor-dock.webp",
+      "jpg": "assets/images/jpg/facility-harbor-dock.jpg",
+      "source": "assets/images/source/facility-harbor-dock.png"
+    }
+  },
+  {
+    "key": "forecast-analytics",
+    "category": "feature",
+    "aspectRatio": "16:9",
+    "alt": "海上生簀の近くで予測データを確認する養殖管理者",
+    "focalPosition": "right center",
+    "recommendedPlacement": "予測、分析、レポート概要",
+    "overlay": "dark-gradient-left",
+    "files": {
+      "webp": "assets/images/webp/forecast-analytics.webp",
+      "jpg": "assets/images/jpg/forecast-analytics.jpg",
+      "source": "assets/images/source/forecast-analytics.png"
+    }
+  }
+]
