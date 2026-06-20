@@ -1,7 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
-const prisma = new PrismaClient();
+// シードは PgBouncer 経由だと prepared statement エラーが出やすいので、
+// DIRECT_URL (Supabase の直接接続 port 5432) を優先して使う。
+const prisma = new PrismaClient({
+  datasourceUrl: process.env.DIRECT_URL ?? process.env.DATABASE_URL,
+});
 
 function daysAgo(n: number): Date {
   const d = new Date();

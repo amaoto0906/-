@@ -1,13 +1,14 @@
 // 養魚場管理システム DB Schema
-// Prisma + SQLite (MVP)
+// Prisma + PostgreSQL
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 // ============================================================
