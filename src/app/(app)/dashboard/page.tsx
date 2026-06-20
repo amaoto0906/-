@@ -3,15 +3,12 @@ import { KpiCard } from "@/components/kpi-card";
 import { DashboardChart } from "./chart";
 import { prisma } from "@/lib/prisma";
 import {
-  recalcAll,
   getDailyTotals,
   getDashboardSummary,
   getBySpecies,
   getByPondDetail,
   periodRange,
 } from "@/lib/services/aggregation";
-import { runAnomalyDetection } from "@/lib/services/anomaly";
-import { debouncedRefresh } from "@/lib/services/refresh-lock";
 import { formatNumber } from "@/lib/utils";
 import { imageAssets } from "@/lib/image-assets";
 import Link from "next/link";
@@ -25,25 +22,23 @@ export default async function DashboardPage({
 }: {
   searchParams: { period?: string };
 }) {
-  // 30秒に1回までに制限。複数ユーザー同時アクセス時の重複実行を防ぐ。
-  await debouncedRefresh(async () => {
-    await recalcAll(35);
-    await runAnomalyDetection();
-  });
+  // パフォーマンス: 集計の再計算と異常検知は給餌/生産記録の書き込み時に
+  // 既に走るため、ダッシュボード表示ごとには実行しない。
+  // 必要なら /api/refresh などで手動再実行できるよう Phase 2 で追加予定。
 
   const period = (["today", "week", "month"].includes(searchParams.period ?? "")
     ? (searchParams.period as Period)
     : "month") as Period;
   const { from: pFrom, to: pTo, label: periodLabel } = periodRange(period);
 
-  const summary = await getDashboardSummary();
-
+  // KPI / グラフ / 状況パネル / アラート を一括で並列取得
   const to = new Date();
   const from = new Date();
   from.setDate(from.getDate() - 30);
-  const series = await getDailyTotals(from, to);
 
-  const [bySpecies, byPond, recentAlerts] = await Promise.all([
+  const [summary, series, bySpecies, byPond, recentAlerts] = await Promise.all([
+    getDashboardSummary(),
+    getDailyTotals(from, to),
     getBySpecies(pFrom, pTo),
     getByPondDetail(pFrom, pTo),
     prisma.anomalyAlert.findMany({

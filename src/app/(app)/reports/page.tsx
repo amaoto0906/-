@@ -3,7 +3,8 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { formatDateJa } from "@/lib/utils";
 
-export const dynamic = "force-dynamic";
+// 5 分キャッシュ。レポート一覧は頻繁に変わらないので CDN で高速化
+export const revalidate = 300;
 
 type SP = { type?: string };
 

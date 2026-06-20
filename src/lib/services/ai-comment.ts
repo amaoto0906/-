@@ -29,10 +29,43 @@ function monthRange(monthKey: string): { from: Date; to: Date } {
 }
 
 /**
+ * 既に生成済みでまだ新しい (10分以内) AiComment があればそれを返す。
+ * 無ければ null。
+ */
+async function getCachedComment(reportType: string, periodKey: string): Promise<string | null> {
+  const cached = await prisma.aiComment.findUnique({
+    where: { reportType_periodKey: { reportType, periodKey } },
+  });
+  if (!cached) return null;
+  const ageMs = Date.now() - cached.createdAt.getTime();
+  // 過去の日報/週報/月報 (期間が完了済み) は無期限キャッシュ
+  // 今日/今週/今月 (進行中) は 10分でキャッシュ失効
+  const isCurrent =
+    (reportType === "daily" && periodKey === toDateKey(new Date())) ||
+    (reportType === "weekly" && periodKey === currentIsoWeek()) ||
+    (reportType === "monthly" && periodKey === new Date().toISOString().slice(0, 7));
+  if (!isCurrent) return cached.generatedText;
+  return ageMs < 10 * 60 * 1000 ? cached.generatedText : null;
+}
+
+function currentIsoWeek(): string {
+  const d = new Date();
+  const day = (d.getDay() + 6) % 7;
+  d.setDate(d.getDate() - day + 3);
+  const firstThursday = new Date(d.getFullYear(), 0, 4);
+  const diffWeeks = Math.round((d.getTime() - firstThursday.getTime()) / (7 * 86400000));
+  return `${d.getFullYear()}-W${String(diffWeeks + 1).padStart(2, "0")}`;
+}
+
+/**
  * 日報用AIコメントを生成（テンプレート方式）
  * Phase 2でLLMに置き換え可能なインターフェース
  */
 export async function generateDailyComment(date: string): Promise<string> {
+  // パフォーマンス: キャッシュヒット時は重い集計を全部スキップ
+  const cached = await getCachedComment("daily", date);
+  if (cached) return cached;
+
   // 当日 / 前日 / 7日前との比較
   const today = new Date(date);
   const yesterday = new Date(today);
@@ -117,6 +150,9 @@ export async function generateDailyComment(date: string): Promise<string> {
  * 週報用AIコメント
  */
 export async function generateWeeklyComment(weekKey: string): Promise<string> {
+  const cached = await getCachedComment("weekly", weekKey);
+  if (cached) return cached;
+
   const { from, to } = isoWeekRange(weekKey);
   const prev = new Date(from);
   prev.setDate(prev.getDate() - 7);
@@ -186,6 +222,9 @@ export async function generateWeeklyComment(weekKey: string): Promise<string> {
  * 月報用AIコメント
  */
 export async function generateMonthlyComment(monthKey: string): Promise<string> {
+  const cached = await getCachedComment("monthly", monthKey);
+  if (cached) return cached;
+
   const { from, to } = monthRange(monthKey);
   const prev = new Date(from);
   prev.setMonth(prev.getMonth() - 1);
